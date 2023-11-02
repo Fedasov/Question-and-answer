@@ -1,4 +1,4 @@
-.PopularTags button {
+.PopularTags a {
     margin-left: 5px;
     margin-top: 10px;
 }
@@ -19,7 +19,7 @@
 
 .question {
     border: 1px solid grey;
-    margin-top: 30px;
+    margin-top: 20px;
     border-radius: 10px;
     padding: 20px;
 }
@@ -32,10 +32,6 @@
 
 .question-text {
     margin-left: -80px;
-}
-
-.container {
-    margin-left: 10px;
 }
 
 .question-title {
@@ -54,8 +50,8 @@
 }
 
 .contains {
-    margin-top: 10px;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .size {
@@ -105,3 +101,36 @@ textarea.form-text-height {
     padding: 20px;
 }
 
+.a_profile {
+    color: white !important;
+}
+
+.top-profile {
+    margin-top: 20px;
+}
+
+.top-content {
+    margin-top: 20px;
+}
+
+.name {
+    margin-top: 20px;
+}
+
+.border-width{
+    width: 1px;
+}
+
+.button-ask {
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+.wrong-pas {
+    color: red;
+}
+
+.disable {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;
+}

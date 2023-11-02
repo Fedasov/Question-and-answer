@@ -1,0 +1,23 @@
+<div class="contains">
+    <nav aria-label="Page navigation example">
+          <ul class="justify-content-center pagination">
+              {% if objects.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ objects.previous_page_number }}" aria-label="Previous">&laquo;</a></li>
+              {% else %}
+                <li class="page-item"><a class="disable page-link">&laquo;</a></li>
+              {% endif %}
+              {% for page in objects.paginator.page_range %}
+                  {% if page == objects.number %}
+                    <li class="page-item current"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                  {% endif %}
+              {% endfor %}
+              {% if objects.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ objects.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+              {% else %}
+                <li class="page-item"><a class="disable page-link">&raquo;</a></li>
+              {% endif %}
+          </ul>
+    </nav>
+</div>

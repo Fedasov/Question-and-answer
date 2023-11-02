@@ -1,131 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="../static/bootstrap-5.2.2-dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/main.css">
-    <title>Register</title>
-</head>
-<body class="body">
+{% extends 'layouts/base.html' %}
 
-<header class="p-3 text-bg-dark">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
-<!--если пользователь авторизован то выполняется код ниже:-->
-<!--        <div class="dropdown text-end">-->
-<!--          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">-->
-<!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
-<!--          </a>-->
-<!--          <ul class="dropdown-menu text-small" style="">-->
-<!--            <li><a class="dropdown-item" href="#">New project...</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Settings</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Profile</a></li>-->
-<!--            <li><hr class="dropdown-divider"></li>-->
-<!--            <li><a class="dropdown-item" href="#">Sign out</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
-
-<!--если пользователь не авторизован-->
-            <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2">Login</button>
-              <button type="button" class="btn btn-warning">Sign-up</button>
-            </div>
-        </div>
-    </div>
-</header>
-
-<main>
-
-<div class="flex-shrink-0">
-    <div class="row">
-          <div class="col-9">
-              <div class="create-question-form form-bottom">
-                    <h2>Registration</h2>
-                    <form method="post" enctype="multipart/form-data">
-                      <div class="mb-2">
-                        <label class="form-label">Login</label>
-                        <input class="form-control" id="Login">
-                      </div>
-                      <div class="mb-2">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                      </div>
-                      <div class="mb-2">
-                        <label class="form-label">NickName</label>
-                        <input class="form-control" id="NickName">
-                      </div>
-                      <div class="mb-2">
-                        <label for="password1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password1">
-                      </div>
-                      <div class="mb-2">
-                        <label for="password2" class="form-label">Repeat Password</label>
-                        <input type="password" class="form-control" id="password2">
-                      </div>
-                      <div class="mb-2">
-                        <label class="form-label" for="customFile">Choose an avatar</label>
-                        <input type="file" class="form-control" id="customFile" />
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-              </div>
-          </div>
-          <div class="col-3">
-              <h3>Popular tags</h3>
-                  <div class="PopularTags">
-                    <button type="button" class="btn btn-outline-primary">C++</button>
-                    <button type="button" class="btn btn-outline-secondary">Python</button>
-                    <button type="button" class="btn btn-outline-success">HTML</button>
-                    <button type="button" class="btn btn-outline-danger">CSS</button>
-                    <button type="button" class="btn btn-outline-warning">Bootstrap</button>
-                    <button type="button" class="btn btn-outline-info">Ubuntu</button>
-                    <button type="button" class="btn btn-outline-light">Docker</button>
-                  </div>
-              <h3>Best Members</h3>
-                  <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="../static/images/avatarka.jpg" alt="">Fedasov Sergey </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="../static/images/avatarka.jpg" alt="">Alexey Milovanov </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="../static/images/avatarka.jpg" alt="">Valeria Timoshkina </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="../static/images/avatarka.jpg" alt="">Platon Gvozdev </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="../static/images/avatarka.jpg" alt="">Nosov Nikita </button>
-                        </li>
-                  </ul>
-          </div>
-    </div>
+{% block content %}
+<div class="create-question-form form-bottom">
+    <h2>Registration</h2>
+    <form method="post" enctype="multipart/form-data">
+      <div class="mb-2">
+        <p class="wrong-pas">Sorry, this email address allready registred!</p>
+        <label class="form-label">Login</label>
+        <input class="form-control" id="Login">
+      </div>
+      <div class="mb-2">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-2">
+        <label class="form-label">NickName</label>
+        <input class="form-control" id="NickName">
+      </div>
+      <div class="mb-2">
+        <label for="password1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password1">
+      </div>
+      <div class="mb-2">
+        <label for="password2" class="form-label">Repeat Password</label>
+        <input type="password" class="form-control" id="password2">
+      </div>
+      <div class="mb-2">
+        <label class="form-label" for="customFile">Choose an avatar</label>
+        <input type="file" class="form-control" id="customFile" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
-
-</main>
-
-<script src="../bootstrap-5.2.2-dist/js/bootstrap.js" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
