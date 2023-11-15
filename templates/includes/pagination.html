@@ -6,18 +6,29 @@
               {% else %}
                 <li class="page-item"><a class="disable page-link">&laquo;</a></li>
               {% endif %}
+
               {% for page in objects.paginator.page_range %}
-                  {% if page == objects.number %}
-                    <li class="page-item current"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-                  {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                  {% if page < 4 or page > objects.number|add:'-2' and page < objects.number|add:'2' %}
+                    <li class="page-item current {% if page == objects.number %}active{% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                  {% elif page == 4 %}
+                    <li class="page-item">
+<!--                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>-->
+                        <span class="page-link">...</span>
+                    </li>
                   {% endif %}
               {% endfor %}
+
+              <li class="page-item">
               {% if objects.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ objects.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    <a class="page-link" href="?page={{ objects.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
               {% else %}
-                <li class="page-item"><a class="disable page-link">&raquo;</a></li>
+                    <a class="disable page-link">&raquo;</a>
               {% endif %}
+              </li>
           </ul>
     </nav>
 </div>

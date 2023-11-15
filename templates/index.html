@@ -16,12 +16,12 @@
                         <div class="question-title"> <a href="{% url 'question' question_id=object.id %}">{{ object.title }}</a></div>
                         <div>{{ object.content }}</div>
                         <div class="title level">
-                            <p><a class="link-opacity-100" href="#">answer (10)</a></p>
+                            <p><a class="link-opacity-100" href="{% url 'question' question_id=object.id %}">answer ({{ object.answer_count }})</a></p>
                             <p class="tags">Tags:
-                                <a class="link-opacity-100" href="{% url 'popular_tags' tag=object.tags.tag_1 %}">{{ object.tags.tag_1 }}</a>
-                                <a class="link-opacity-100" href="{% url 'popular_tags' tag=object.tags.tag_2 %}">{{ object.tags.tag_2 }}</a>
-                                <a class="link-opacity-100" href="{% url 'popular_tags' tag=object.tags.tag_3 %}">{{ object.tags.tag_3 }}</a>
-                            </p>
+                                {% for tag in object.tags.all %}
+                                    <a class="link-opacity-100" href="{% url 'popular_tags' tag=tag.tag %}">{{ tag }}</a>
+                                {% endfor %}
+                           </p>
                         </div>
                     </div>
                 </div>
