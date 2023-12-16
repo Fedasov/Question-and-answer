@@ -1,18 +1,20 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 <div class="create-question-form form-bottom">
       <h2>Log In</h2>
-      <form>
+      <form method="POST">
+          {% csrf_token %}
+          <p class="wrong-pas">{{ form.non_field_errors }}</p>
           <div class="mb-3">
-              <p class="wrong-pas">Sorry, wrong password!</p>
-            <label class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label class="form-label">Username</label>
+              {{ form.username }}
+            <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+              {{ form.password }}
           </div>
           <div class="md-3">
               <p><a class="link-opacity-25-hover" href="{% url 'signup' %}">Сreate a new account</a></p>

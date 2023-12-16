@@ -34,13 +34,22 @@
     margin-left: -80px;
 }
 
+.correct-checkpoint {
+    margin-left: -80px;
+}
+
 .question-title {
     font-size: 30px;
     font-family: Helvetica;
     font-weight: bold;
 }
 
-.reaction {
+.reaction-answer {
+    margin-left: -10px;
+    margin-top: 30px;
+}
+
+.reaction-question {
     margin-left: -10px;
     margin-top: 30px;
 }
@@ -89,7 +98,7 @@ textarea.form-text-height {
     margin-bottom: 20px;
 }
 
-.correct-answer {
+.right-answer {
     border: 3px solid black;
     margin-top: 30px;
     padding: 20px;
@@ -106,14 +115,10 @@ textarea.form-text-height {
 }
 
 .top-profile {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .top-content {
-    margin-top: 20px;
-}
-
-.name {
     margin-top: 20px;
 }
 

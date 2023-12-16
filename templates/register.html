@@ -1,34 +1,35 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 <div class="create-question-form form-bottom">
     <h2>Registration</h2>
     <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <p class="wrong-pas">{{ form.errors }}</p>
       <div class="mb-2">
-        <p class="wrong-pas">Sorry, this email address allready registred!</p>
-        <label class="form-label">Login</label>
-        <input class="form-control" id="Login">
+        <label class="form-label">Username</label>
+        {{ form.username }}
       </div>
+
       <div class="mb-2">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label class="form-label">Email address</label>
+        {{ form.email }}
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
       </div>
       <div class="mb-2">
-        <label class="form-label">NickName</label>
-        <input class="form-control" id="NickName">
+        <label class="form-label">Password</label>
+        {{ form.password }}
       </div>
       <div class="mb-2">
-        <label for="password1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password1">
+        <label class="form-label">Repeat Password</label>
+        {{ form.password_check }}
+<!--        <input type="password" class="form-control" id="password2">-->
       </div>
+
       <div class="mb-2">
-        <label for="password2" class="form-label">Repeat Password</label>
-        <input type="password" class="form-control" id="password2">
-      </div>
-      <div class="mb-2">
-        <label class="form-label" for="customFile">Choose an avatar</label>
-        <input type="file" class="form-control" id="customFile" />
+        <label class="form-label">Choose an avatar</label>
+        {{ form.avatar }}
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css?rnd=<?= rand(0, 999) ?>">
     <link href="{% static '/bootstrap-5.2.2-dist/css/bootstrap.css' %}" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/font/bootstrap-icons.css' %}">
     <title>Main</title>
 </head>
 <body class="body">
@@ -22,7 +23,9 @@
               <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
               <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
               <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                {% if request.user.is_authenticated %}
+              <li><a href="{% url 'logout' %}" class="nav-link px-2 text-white">Logout</a></li>
+                {% endif %}
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
               <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -30,15 +33,23 @@
             <div class="button-ask">
                 <a type="button" class="btn btn-success" href="{% url 'ask' %}">Ask !</a>
             </div>
-<!--если пользователь авторизован то выполняется код ниже:-->
-<!--        <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">-->
-<!--            <a href="{% url 'profile' %}" class="text-decoration-none a_profile"><img class="rounded-circle me-1" width="30" height="30" src="{% static '/images/avatarka.jpg' %}" alt="">Sergey Fedasov</a>-->
-<!--        </span>-->
-<!--если пользователь не авторизован-->
-            <div class="text-end">
-              <a type="button" class="btn btn-outline-light me-2" href="{% url 'login' %}">Login</a>
-              <a type="button" class="btn btn-warning" href="{% url 'signup' %}">Sign-up</a>
-            </div>
+            {% if request.user.is_authenticated %}
+                <!--если пользователь авторизован то выполняется код ниже:-->
+                <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
+                    <a href="{% url 'profile'%}" class="text-decoration-none a_profile">
+                        {% if request.user.profile.avatar %}
+                            <img class="rounded-circle me-1" width="30" height="30" src="{{ request.user.profile.avatar.url }}" alt="">
+                        {% endif %}
+                        {{ request.user.username }}
+                    </a>
+                </span>
+            {% else %}
+                <!--если пользователь не авторизован-->
+                <div class="text-end">
+                  <a type="button" class="btn btn-outline-light me-2" href="{% url 'login' %}">Login</a>
+                  <a type="button" class="btn btn-warning" href="{% url 'signup' %}">Sign-up</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </header>
@@ -92,5 +103,6 @@
 
 
 <script src="{% static 'bootstrap-5.2.2-dist/js/bootstrap.js' %}" crossorigin="anonymous"></script>
+<script src="{% static '/js/main.js' %}" crossorigin="anonymous"></script>
 </body>
 </html>
