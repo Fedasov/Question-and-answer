@@ -19,6 +19,11 @@ def pop_tags():
     tag = Tag.objects.annotate(q_count=Count('questions')).order_by('-q_count')
     return tag[:6]
 
+def best_members():
+    user = Profile.objects.annotate(answer_count=Count('answer')).order_by('-answer_count')
+    print(user[4].answer_count)
+    return user[:5]
+
 def paginate(request, objects, page_namber, per_page=10):
     try:
         page = request.GET.get('page', page_namber)
@@ -30,11 +35,11 @@ def paginate(request, objects, page_namber, per_page=10):
 
 def index(request, page_number=1):
     QUESTIONS = Question.objects.new_question()
-    return render(request, 'index.html', {'objects': paginate(request, QUESTIONS, page_number), 'pop_tags': pop_tags()})
+    return render(request, 'index.html', {'objects': paginate(request, QUESTIONS, page_number), 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 def hot(request, page_number=1):
     hot_question = Question.objects.hot_question()
-    return render(request, 'index.html', {'objects': paginate(request, hot_question, page_number), 'pop_tags': pop_tags()})
+    return render(request, 'index.html', {'objects': paginate(request, hot_question, page_number), 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 def question(request, question_id, page_number=1):
     item = Question.objects.new_question().get(id=question_id)
@@ -54,12 +59,12 @@ def question(request, question_id, page_number=1):
                 return redirect(f"%s?page={page_number_answer}" % reverse("question", args=[question_id]))
             else:
                 answer_form.add_error(field=None, error="Wrong text question")
-    return render(request, 'question.html', context={'question': item, 'pop_tags': pop_tags(), 'objects': paginate(request, answers, page_number), 'form': answer_form})
+    return render(request, 'question.html', context={'question': item, 'objects': paginate(request, answers, page_number), 'form': answer_form, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 def popular_tags(request, tag = '', page_number=1):
     tag = Tag.objects.get(tag=tag)
     question = Question.objects.top_tag_questions(tag)
-    return render(request, 'index.html', {'objects': paginate(request, question, page_number), 'pop_tags': pop_tags()})
+    return render(request, 'index.html', {'objects': paginate(request, question, page_number), 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 # Заходить на форму нового вопроса могут только авторизованные пользователи
 @login_required(login_url='login/', redirect_field_name='continue')
@@ -75,7 +80,7 @@ def ask(request):
                 return redirect(reverse("question", args=[_question.id]))
             else:
                 question_form.add_error(field=None, error="Wrong text question")
-    return render(request, 'ask.html', context={'form': question_form, 'pop_tags': pop_tags()})
+    return render(request, 'ask.html', context={'form': question_form, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 @csrf_protect
 def log_in(request):
@@ -90,7 +95,7 @@ def log_in(request):
                 return redirect(request.GET.get('continue', '/'))
             else:
                 login_form.add_error(None, "Wrong password or user does not exist")
-    return render(request, 'login.html', context={'form': login_form, 'pop_tags': pop_tags()})
+    return render(request, 'login.html', context={'form': login_form, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 def signup(request):
     if request.method == "GET":
@@ -103,12 +108,12 @@ def signup(request):
                 return redirect(reverse('index'))
             else:
                 user_form.add_error(field=None, error="A user with this name already exists")
-    return render(request, 'register.html', context={'form': user_form, 'pop_tags': pop_tags()})
+    return render(request, 'register.html', context={'form': user_form, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 @login_required(login_url='login/', redirect_field_name='continue')
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'profile.html', {'profile': profile, 'pop_tags': pop_tags()})
+    return render(request, 'profile.html', {'profile': profile, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 @csrf_protect
 @login_required(login_url='login/', redirect_field_name='continue')
@@ -119,7 +124,7 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-    return render(request, 'edit_profile.html', context={'form': form, 'pop_tags': pop_tags()})
+    return render(request, 'edit_profile.html', context={'form': form, 'pop_tags': pop_tags(), 'best_members': best_members()})
 
 @csrf_protect
 @login_required(login_url='login/', redirect_field_name='continue')

@@ -74,26 +74,12 @@
               <br>
               <h3>Best Members</h3>
                   <ul class="list-group list-group-flush">
+                      {% for members in best_members %}
                         <li class="list-group-item">
                             <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="{% static '/images/avatarka.jpg' %}" alt="">Fedasov Sergey </button>
+                                <img class="rounded-circle me-1" width="24" height="24" src="{{ members.avatar.url }}" alt="">{{ members.user.username }}</button>
                         </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="{% static '/images/avatarka.jpg' %}" alt="">Alexey Milovanov </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="{% static '/images/avatarka.jpg' %}" alt="">Valeria Timoshkina </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="{% static '/images/avatarka.jpg' %}" alt="">Platon Gvozdev </button>
-                        </li>
-                        <li class="list-group-item">
-                            <button class="black-text badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="{% static '/images/avatarka.jpg' %}" alt="">Nosov Nikita </button>
-                        </li>
+                      {% endfor %}
                   </ul>
           </div>
     </div>
